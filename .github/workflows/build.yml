@@ -20,11 +20,8 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-      # npm records GitHub dependencies such as @miti/sdk as git+ssh; fetch them over HTTPS, with
-      # the MITI_SDK_TOKEN secret (a token that can read hiran-t/MITI-sdk) while it is private.
-      - run: git config --global url."https://${TOKEN:+x-access-token:$TOKEN@}github.com/".insteadOf ssh://git@github.com/
-        env:
-          TOKEN: ${{ secrets.MITI_SDK_TOKEN }}
+      # npm records GitHub dependencies such as @miti/sdk as git+ssh; fetch them over HTTPS.
+      - run: git config --global url."https://github.com/".insteadOf ssh://git@github.com/
       - run: npm ci
       - run: npm run type-check
       - run: npm run build

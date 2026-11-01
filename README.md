@@ -43,8 +43,6 @@ git tag v1.0.0 && git push origin v1.0.0
 
 GitHub Actions builds the widget and publishes `dist/<id>-<version>.miti-widget` in a release, where people download it to import into MITI. Importing a newer version replaces the old one; panels keep their settings.
 
-While [MITI-sdk](https://github.com/hiran-t/MITI-sdk) is private, Actions needs a secret `MITI_SDK_TOKEN` holding a token that can read it, and `npm install` needs your own access to it.
-
 ## License
 
 [MIT](LICENSE).
