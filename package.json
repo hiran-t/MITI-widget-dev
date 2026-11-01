@@ -10,7 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@miti/sdk": "git+https://github.com/hiran-t/MITI-sdk.git",
+    "@miti/sdk": "git+https://github.com/hiran-t/MITI-sdk.git#semver:^1.0.0",
     "@types/react": "^18.3.28",
     "lucide-react": "^0.300.0",
     "react": "^18.3.1",

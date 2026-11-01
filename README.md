@@ -1,6 +1,6 @@
 # MITI widget
 
-Start a [MITI](https://github.com/hiran-t/MITI) widget here. A widget adds panels to MITI, for example for a robot's driver or a vision system, and is imported into an installed MITI as one `.miti-widget` file, with no change to MITI itself.
+Start a [MITI](https://github.com/hiran-t/MITI) widget here (MITI 3.4.0 or newer). A widget adds panels to MITI, for example for a robot's driver or a vision system, and is imported into an installed MITI as one `.miti-widget` file, with no change to MITI itself.
 
 This template holds a working widget, **Gauge**: a panel that shows a number from any topic as a dial, such as `position[0]` of `/joint_states`. Change it into yours.
 
