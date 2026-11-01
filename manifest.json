@@ -1,0 +1,9 @@
+{
+  "id": "example.gauge",
+  "name": "Gauge",
+  "version": "1.0.0",
+  "description": "Shows a number from any topic as a dial, e.g. a joint position or a battery level.",
+  "author": "MITI Contributors",
+  "license": "MIT",
+  "miti": { "apiVersion": 1 }
+}

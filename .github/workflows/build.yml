@@ -1,0 +1,45 @@
+name: Build
+
+# Builds the widget on every push; a tag v<version> also publishes the .miti-widget file in a
+# GitHub release, where people download it to import into MITI.
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+      # npm records GitHub dependencies such as @miti/sdk as git+ssh; fetch them over HTTPS, with
+      # the MITI_SDK_TOKEN secret (a token that can read hiran-t/MITI-sdk) while it is private.
+      - run: git config --global url."https://${TOKEN:+x-access-token:$TOKEN@}github.com/".insteadOf ssh://git@github.com/
+        env:
+          TOKEN: ${{ secrets.MITI_SDK_TOKEN }}
+      - run: npm ci
+      - run: npm run type-check
+      - run: npm run build
+      - uses: actions/upload-artifact@v7
+        with:
+          name: widget
+          path: dist/*.miti-widget
+      - name: Publish the release
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          version=$(node -p "require('./manifest.json').version")
+          if [ "$GITHUB_REF_NAME" != "v$version" ]; then
+            echo "The tag $GITHUB_REF_NAME does not match manifest.json's version $version" >&2
+            exit 1
+          fi
+          gh release create "$GITHUB_REF_NAME" dist/*.miti-widget --title "$GITHUB_REF_NAME" --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}

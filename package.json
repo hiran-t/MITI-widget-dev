@@ -1,0 +1,19 @@
+{
+  "name": "miti-widget-gauge",
+  "private": true,
+  "description": "A MITI widget: a Gauge panel that shows a number from any topic as a dial",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "miti-widget build",
+    "dev": "miti-widget dev --miti http://localhost:3000",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@miti/sdk": "git+https://github.com/hiran-t/MITI-sdk.git",
+    "@types/react": "^18.3.28",
+    "lucide-react": "^0.300.0",
+    "react": "^18.3.1",
+    "typescript": "^5.9.3"
+  }
+}
